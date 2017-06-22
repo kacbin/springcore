@@ -1,0 +1,78 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans.xsd 
+http://www.springframework.org/schema/jee 
+http://www.springframework.org/schema/jee/spring-jee.xsd 
+http://www.springframework.org/schema/tx 
+http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/data/jpa 
+http://www.springframework.org/schema/data/jpa/spring-jpa.xsd 
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://www.springframework.org/schema/util 
+http://www.springframework.org/schema/util/spring-util.xsd
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+
+
+	<bean id="absService" class="com.cubic.spring.AbstractService"
+		abstract="true" scope="prototype">
+		<property name="manufacturer" value="WALGREENS"></property>
+		<property name="defaultDrug" ref="drugVO"></property>
+		<property name="notifyService" ref="emailNS"></property>
+	</bean>
+
+
+	<bean id="ds2" class="com.cubic.spring.DrugServiceImpl" scope="prototype"
+		parent="absService">
+		<property name="manufacturer" value="WALMART"></property>
+
+		<property name="drugContents">
+			<list>
+				<value>content1</value>
+
+				<value>content2</value>
+
+				<value>content3</value>
+
+				<value>content4</value>
+
+
+			</list>
+		</property>
+
+		<property name="manufacturers">
+			<set value-type="com.cubic.vo.Manufacturers">
+
+				<value>Glaxo</value>
+				<value>Glaxo</value>
+				<value>SunPhas</value>
+				<value>Distil</value>
+				<value>Alpha</value>
+				<value>Alpha</value>
+
+			</set>
+		</property>
+		<property name="contentDetails">
+			<map>
+
+				<entry key="key1" value="value1"></entry>
+				<entry key="key2" value="value2"></entry>
+				<entry key="key3" value="value3"></entry>
+				<entry key="key4" value="value4"></entry>
+
+			</map>
+		</property>
+	</bean>
+
+
+
+
+</beans>
